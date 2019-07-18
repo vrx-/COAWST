@@ -300,7 +300,7 @@
 # endif
             CALL wvelocity (ng, tile, nstp(ng))
             END DO
-          END DO
+!          END DO
 !$OMP BARRIER
         END DO
 # ifdef NESTING
@@ -374,7 +374,7 @@
 !
         DO ng=1,Ngrids
           DO tile=first_tile(ng),last_tile(ng),+1
-            CALL omega (ng, tile)
+            CALL omega (ng, tile, iNLM)
 # ifdef MY25_MIXING
             CALL my25_corstep (ng, tile)
 # elif defined GLS_MIXING

@@ -51,6 +51,7 @@
 # ifdef BVF_MIXING
       USE bvf_mix_mod, ONLY : bvf_mix
 # endif
+      USE dateclock_mod, ONLY : time_string
       USE diag_mod, ONLY : diag
 # ifdef TLM_CHECK
       USE dotproduct_mod, ONLY : nl_dotproduct

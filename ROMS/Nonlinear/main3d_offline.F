@@ -447,7 +447,7 @@
           nfm3(ng)=MOD(nfm3(ng)+1,NFT+1)
         END DO
 # endif
-      ! END DO STEP_LOOP
+       END DO STEP_LOOP
 
       RETURN
       END SUBROUTINE main3d_offline

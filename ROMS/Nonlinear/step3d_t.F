@@ -190,6 +190,10 @@
 # ifdef T_PASSIVE
       USE pt3dbc_mod, ONLY : pt3dbc_tile
 # endif
+
+# if defined OFFLINE_BIOLOGY
+      USE mod_biology
+endif
 !
 !  Imported variable declarations.
 !
@@ -966,7 +970,7 @@
      &               0.5_r8*MAX(0.0_r8,                                 &
      &                          MIN(2.0_r8,2.0_r8*ru*rkau,betau))*      &
      &               grad_k(k)*kaz(k)
-                END IF 
+                END IF
                 FC(i,k)=W(i,j,k)*sw
               END IF
             END DO

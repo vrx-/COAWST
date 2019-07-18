@@ -193,7 +193,7 @@
 
 # if defined OFFLINE_BIOLOGY
       USE mod_biology
-endif
+# endif
 !
 !  Imported variable declarations.
 !

@@ -208,11 +208,15 @@
 !
         DO ng=1,Ngrids
           DO tile=first_tile(ng),last_tile(ng),+1
-            CALL set_massflux (ng, tile)
+            CALL set_massflux (ng, tile, iNLM)
 # ifndef TS_FIXED
-            CALL rho_eos (ng, tile)
+            CALL rho_eos (ng, tile, iNLM)
 # endif
             CALL diag (ng, tile)
+# ifdef TLM_CHECK
+            CALL nl_dotproduct (ng, tile, Lnew(ng))
+            Print *, 'nl_product'
+# endif
           END DO
 !$OMP BARRIER
         END DO
@@ -292,7 +296,7 @@
             CALL hmixing (ng, tile)
 # endif
 # if !defined OCLIMATOLOGY
-            CALL omega (ng, tile)
+            CALL omega (ng, tile, iNLM)
 # endif
             CALL wvelocity (ng, tile, nstp(ng))
             END DO
@@ -337,7 +341,7 @@
         DO ng=1,Ngrids
           CALL output (ng)
           IF ((exit_flag.ne.NoError).or.                                &
-     &        ((iic(ng).eq.(ntend(ng)+1)).and.(ng.eq.Ngrids))) RETURN 
+     &        ((iic(ng).eq.(ntend(ng)+1)).and.(ng.eq.Ngrids))) RETURN
         END DO
 !
 !-----------------------------------------------------------------------

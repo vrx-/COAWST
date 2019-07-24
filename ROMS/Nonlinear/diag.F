@@ -178,10 +178,14 @@
       integer, parameter :: Nreduce = 4
       integer, parameter :: Ncourant = 5
 # endif
-      real(r8), dimension(Nreduce) :: buffer
+      real(r8), allocatable :: buffer(:)
+      character (len=3), allocatable :: op_handle(:)
+      character (len=6), allocatable :: C_handle(:)
+
+!      real(r8), dimension(Nreduce) :: buffer
       real(r8), dimension(Ncourant) :: Courant
-      character (len=3), dimension(Nreduce) :: op_handle
-      character (len=6), dimension(Nreduce) :: C_handle
+!      character (len=3), dimension(Nreduce) :: op_handle
+!      character (len=6), dimension(Nreduce) :: C_handle
 #else
       integer :: my_threadnum
 #endif
